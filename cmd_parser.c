@@ -10,6 +10,7 @@ int main (int argc, char **argv) {
   char *p = NULL;
   FILE *fp = NULL;
   char cmdline[PATH_MAX] = { 0, };
+  char abspath[PATH_MAX] = { 0, };
   char buf[CMD_MAX] = { 0, };
 
   fprintf (stdout, "** cmd_parser **\n");
@@ -35,6 +36,8 @@ int main (int argc, char **argv) {
       } 
     } else 
       fprintf (stderr, "Cannot get command\n");
+    snprintf (abspath, PATH_MAX, "/proc/%d/exe", pid);
+    fprintf (stdout, "abspath: %s\n", realpath (abspath, NULL));
     fp = NULL;
     p = NULL;
   }
