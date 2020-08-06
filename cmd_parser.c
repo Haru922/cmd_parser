@@ -6,6 +6,7 @@
 #define CMD_MAX 131070
 
 int main (int argc, char **argv) {
+  int i;
   int pid;
   char *p = NULL;
   FILE *fp = NULL;
@@ -38,6 +39,8 @@ int main (int argc, char **argv) {
       fprintf (stderr, "Cannot get command\n");
     snprintf (abspath, PATH_MAX, "/proc/%d/exe", pid);
     fprintf (stdout, "abspath: %s\n", realpath (abspath, NULL));
+    for (i=0; i<CMD_MAX; i++)
+      buf[i] = '\0';
     fp = NULL;
     p = NULL;
   }
